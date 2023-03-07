@@ -1,0 +1,25 @@
+.figure {
+
+}
+
+.figure ul {
+    border: 3px solid black;
+}
+
+.cells {
+    list-style: none;
+    border: 3px solid black;
+    width: 194px;
+    height: 194px;
+    background-color: lightgray;
+
+}
+
+.cells:hover { 
+    background-color: yellow;
+}
+
+
+/* .clicked {
+
+} */

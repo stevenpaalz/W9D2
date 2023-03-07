@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__(/*! ../ttt_node/game.js */ \"./ttt_node/game.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const g = new Game();\n\n  const ttt = document.querySelector(\".ttt\");\n\n  const v = new View(g, ttt);\n});\n\n\n//# sourceURL=webpack://skeleton-3/./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\");\nconst Game = __webpack_require__(/*! ../ttt_node/game.js */ \"./ttt_node/game.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const g = new Game();\n\n  const ttt = document.querySelector(\".ttt\");\n  window.ttt = ttt;\n\n  const v = new View(g, ttt);\n  window.v = v;\n});\n\n\n//# sourceURL=webpack://skeleton-3/./src/index.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, el) {\n    this.game = game;\n    this.el = el;\n  }\n\n  setupBoard() {\n    const ul = document.createElement(\"ul\");\n  }\n\n  bindEvents() {}\n\n  handleClick(e) {}\n\n  makeMove(square) {}\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack://skeleton-3/./src/ttt-view.js?");
+eval("class View {\n  constructor(game, el) {\n    this.game = game;\n    this.el = el;\n    this.setupBoard();\n  }\n\n  setupBoard() {\n    const ul = document.createElement(\"ul\");\n\n    for (let i = 0; i < this.game.board.grid.length; i++) {\n      let row = this.game.board.grid[i];\n      for (let j =0; j < row.length; j++) {\n        let cell = row[j];\n        let li = document.createElement(\"li\");\n        li.dataset.row = i;\n        li.dataset.col = j;\n        li.classList.add(\"cells\")\n        ul.append(li);\n      }\n    }\n\n    ul.style.display = \"flex\";\n    ul.style.width = \"600px\";\n    ul.style.flexWrap = \"wrap\";\n    \n    ttt.append(ul);\n\n  }\n\n  bindEvents() {}\n\n  handleClick(e) {\n    let row = e.target.dataset.row;\n    let col = e.target.dataset.col;\n    let square = [row, col];\n    this.makeMove(square);\n  }\n\n  makeMove(square) {\n    if (!this.game.board.isEmptyPos(square)) {alert('Is not an empty position!')}\n    else {\n      this.game.playMove(square)\n      e.target.classList.remove(\".cells\");\n      e.target.classList.add(\".clicked\");\n    }\n  }\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack://skeleton-3/./src/ttt-view.js?");
 
 /***/ }),
 

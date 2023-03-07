@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const g = new Game();
 
   const ttt = document.querySelector(".ttt");
+  window.ttt = ttt;
 
   const v = new View(g, ttt);
+  window.v = v;
 });

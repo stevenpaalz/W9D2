@@ -1,14 +1,18 @@
 class View {
-  constructor(game, el) {}
+  constructor(game, el) {
+    this.game = game;
+    this.el = el;
+  }
 
-  setupBoard() {}
-  
+  setupBoard() {
+    const ul = document.createElement("ul");
+  }
+
   bindEvents() {}
 
   handleClick(e) {}
 
   makeMove(square) {}
-
 }
 
 module.exports = View;
